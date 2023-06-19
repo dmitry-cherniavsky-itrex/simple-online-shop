@@ -1,5 +1,5 @@
 # Coding task
-## Simple online shop,
+## Simple online shop
 
 ## Available Scripts
 

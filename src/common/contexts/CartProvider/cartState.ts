@@ -1,6 +1,6 @@
 import type {ICartItem} from './cartItem';
 
-export interface CartState {
+export interface ICartState {
     items: ICartItem[];
     isCartShown: boolean;
     counter: number;

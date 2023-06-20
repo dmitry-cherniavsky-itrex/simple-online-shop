@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 
 import {useCart} from "../../../../common/contexts/CartProvider/CartContext";
 import {CartItem} from "../CartItem/CartItem";
+import {CartActionType} from "../../../../common/contexts/CartProvider/cartActions";
 
 import {Button} from "../../../../common/components/form/Buttons/Buttons.styles";
 import {CartDropdownContainer, CartItemsContainer, EmptyPlaceholder} from './CartDropdown.styles';
@@ -13,7 +14,7 @@ export const CartDropdown : React.FC = () => {
 
     const goToCheckoutHandler = () => {
         navigate('/checkout');
-        dispatch({type: "TOGGLE_CART"});
+        dispatch({type: CartActionType.TOGGLE_CART});
     };
 
     return (

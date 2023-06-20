@@ -1,17 +1,18 @@
 import React, {useReducer, createContext, useContext} from 'react';
-import {CartState} from './cartState';
-import {CartAction} from './cartActions';
+
+import {ICartState} from './cartState';
+import {TCartAction, CartActionType} from './cartActions';
 import {TProviderProps} from "../types";
 
-const initialCartState: CartState = {
+const initialCartState: ICartState = {
     items: [],
     isCartShown: false,
     counter: 0
 };
 
-function cartReducer(state: CartState, action: CartAction): CartState {
+function cartReducer(state: ICartState, action: TCartAction): ICartState {
     switch (action.type) {
-        case 'ADD':
+        case CartActionType.ADD:
             // If item already exists in cart, increase quantity
             const newCounter = state.counter + 1;
             const existingItemIndex = state.items.findIndex(item => item.id === action.item.id);
@@ -40,7 +41,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
                 counter: newCounter
             };
 
-        case 'REMOVE':
+        case CartActionType.REMOVE:
             // Filter out the item with the given id
             const newItems = state.items.filter(item => item.id !== action.item.id);
             return {
@@ -49,7 +50,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
                 counter: state.counter - action.item.quantity
             };
 
-        case 'TOGGLE_CART':
+        case CartActionType.TOGGLE_CART:
             return {...state, isCartShown: !state.isCartShown};
 
         default:
@@ -57,7 +58,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     }
 }
 
-export const CartContext = createContext<[CartState, React.Dispatch<CartAction>] | undefined>(undefined);
+export const CartContext = createContext<[ICartState, React.Dispatch<TCartAction>] | undefined>(undefined);
 
 export const CartProvider : React.FC <TProviderProps> = ({children}) => {
     const [state, dispatch] = useReducer(cartReducer, initialCartState);

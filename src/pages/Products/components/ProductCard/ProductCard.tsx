@@ -5,6 +5,7 @@ import type {TProduct} from "../../../../types/product";
 
 import {ProductCardContainer, ProductInfo, ProductNamePrice, ProductDescription} from "./ProductCard.styles";
 import {useCart} from "../../../../common/contexts/CartProvider/CartContext";
+import {CartActionType} from "../../../../common/contexts/CartProvider/cartActions";
 
 interface IProductCardProps {
     product: TProduct
@@ -15,7 +16,7 @@ export const ProductCard: React.FC<IProductCardProps> = ({product}) => {
     const [, dispatch] = useCart();
 
     const addToCart = () => {
-        dispatch({ type: 'ADD', item: product});
+        dispatch({type: CartActionType.ADD, item: product});
     };
 
     return (

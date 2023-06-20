@@ -1,7 +1,13 @@
 import {TProduct} from "../../../types/product";
 import {ICartItem} from "./cartItem";
 
-export type CartAction =
-    | { type: 'ADD'; item: TProduct }
-    | { type: 'REMOVE'; item: ICartItem }
-    | { type: 'TOGGLE_CART' }
+export enum CartActionType {
+    ADD = 'ADD',
+    REMOVE = 'REMOVE',
+    TOGGLE_CART = 'TOGGLE_CART'
+}
+
+export type TCartAction =
+    | { type: CartActionType.ADD; item: TProduct }
+    | { type: CartActionType.REMOVE; item: ICartItem }
+    | { type: CartActionType.TOGGLE_CART }

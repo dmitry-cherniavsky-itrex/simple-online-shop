@@ -4,4 +4,5 @@ export interface ICartState {
     items: ICartItem[];
     isCartShown: boolean;
     counter: number;
+    totalCost:  number;
 }

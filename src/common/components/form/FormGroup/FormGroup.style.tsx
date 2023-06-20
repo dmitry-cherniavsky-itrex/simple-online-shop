@@ -5,5 +5,4 @@ export const FormGroup = styled.div`
   column-gap: 8px;
   position: relative;
   margin: 16px 0;
-  width: 100%;
 `;

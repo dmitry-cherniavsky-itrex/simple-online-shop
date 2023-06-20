@@ -29,9 +29,7 @@ export const CartDropdown : React.FC = () => {
                 )}
             </CartItemsContainer>
             {!!state.items.length &&
-                <Button
-                    onClick={goToCheckoutHandler}
-                > GO TO CHECKOUT </Button>
+                <Button onClick={goToCheckoutHandler}> GO TO CHECKOUT </Button>
             }
         </CartDropdownContainer>
     );

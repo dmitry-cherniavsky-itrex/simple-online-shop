@@ -7,7 +7,8 @@ import {TProviderProps} from "../types";
 const initialCartState: ICartState = {
     items: [],
     isCartShown: false,
-    counter: 0
+    counter: 0,
+    totalCost: 0
 };
 
 function cartReducer(state: ICartState, action: TCartAction): ICartState {
@@ -15,6 +16,7 @@ function cartReducer(state: ICartState, action: TCartAction): ICartState {
         case CartActionType.ADD:
             // If item already exists in cart, increase quantity
             const newCounter = state.counter + 1;
+            const newTotalCost = state.totalCost + action.item.price;
             const existingItemIndex = state.items.findIndex(item => item.id === action.item.id);
 
             if (existingItemIndex !== -1) {
@@ -28,7 +30,8 @@ function cartReducer(state: ICartState, action: TCartAction): ICartState {
                 return {
                     ...state,
                     items: newItems,
-                    counter: newCounter
+                    counter: newCounter,
+                    totalCost: newTotalCost
                 };
             }
             // Else add a new item
@@ -38,16 +41,20 @@ function cartReducer(state: ICartState, action: TCartAction): ICartState {
                     ...state.items,
                     {...action.item, quantity: 1}
                 ],
-                counter: newCounter
+                counter: newCounter,
+                totalCost: newTotalCost
             };
 
         case CartActionType.REMOVE:
             // Filter out the item with the given id
             const newItems = state.items.filter(item => item.id !== action.item.id);
+            const updatedTotalCost = state.totalCost - (action.item.price * action.item.quantity);
+
             return {
                 ...state,
                 items: newItems,
-                counter: state.counter - action.item.quantity
+                counter: state.counter - action.item.quantity,
+                totalCost: updatedTotalCost
             };
 
         case CartActionType.TOGGLE_CART:

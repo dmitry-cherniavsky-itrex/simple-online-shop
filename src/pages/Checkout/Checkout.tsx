@@ -1,5 +1,5 @@
-import {useState} from "react";
-import {Link} from "react-router-dom";
+import React, {useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 
 import {useCart} from "../../common/contexts/CartProvider/CartContext";
 import {ICartItem} from "../../common/contexts/CartProvider/cartItem";
@@ -13,10 +13,27 @@ import {Button} from "../../common/components/form/Buttons/Buttons.styles";
 export const Checkout = () => {
     const [state, dispatch] = useCart();
     const [error, setError] = useState('');
+    const [email, setEmail] = useState('');
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    const navigate = useNavigate();
 
     const removeOrderItem = (item: ICartItem) => {
         dispatch({type: CartActionType.REMOVE, item});
     }
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target.value);
+    };
+
+    const handleConfirm = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        if (emailRegex.test(email)) {
+            navigate('/confirmation', {state: {email}});
+        } else {
+            setError('Email address is not valid');
+        }
+    };
 
     return (
         <>
@@ -28,7 +45,7 @@ export const Checkout = () => {
                     <>
                         <OrderItemsList>
                             {state.items.map((item) =>
-                                <OrderItem>
+                                <OrderItem key={item.id}>
                                     <span>{item.title}</span>
                                     <span>{item.quantity} x ${item.price}</span>
                                     <button
@@ -42,9 +59,15 @@ export const Checkout = () => {
                                 <strong>${state.totalCost}</strong>
                             </OrderItem>
                         </OrderItemsList>
-                        <form>
+                        <form onSubmit={handleConfirm}>
                             <FormGroup>
-                                <Input type="email" placeholder="Enter your email..." error={error}></Input>
+                                <Input
+                                    value={email}
+                                    type="email"
+                                    placeholder="Enter your email..."
+                                    error={error}
+                                    onChange={handleChange}
+                                ></Input>
                                 <Button>Confirm</Button>
                             </FormGroup>
                         </form>

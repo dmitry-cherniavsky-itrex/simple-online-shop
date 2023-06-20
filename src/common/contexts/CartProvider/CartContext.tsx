@@ -1,7 +1,7 @@
-import {useReducer, createContext, useContext} from 'react';
+import {createContext, useContext, useReducer} from 'react';
 
 import {ICartState} from './cartState';
-import {TCartAction, CartActionType} from './cartActions';
+import {CartActionType, TCartAction} from './cartActions';
 import {TProviderProps} from "../types";
 
 const initialCartState: ICartState = {
@@ -55,6 +55,14 @@ function cartReducer(state: ICartState, action: TCartAction): ICartState {
                 counter: state.counter - action.item.quantity,
                 totalCost: updatedTotalCost
             };
+
+        case CartActionType.RESET:
+            return {
+                ...state,
+                items: [],
+                counter: 0,
+                totalCost: 0
+            }
 
         default:
             return state;

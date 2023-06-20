@@ -4,7 +4,7 @@ import { formFieldStyleBase } from "../FormField.style";
 
 export const StyledInput = styled.input`
   ${formFieldStyleBase};
-  border: 2px solid #bfc9da;
+  border: 1px solid #bfc9da;
   font-size: 100%;
   
   &:active {

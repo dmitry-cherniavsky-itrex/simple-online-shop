@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import {ProductCard} from "./components/ProductCard/ProductCard";
 
@@ -6,7 +6,7 @@ import type {TProduct} from "../../types/product";
 
 import {ProductsContainer} from "./Products.styles";
 
-export const Products: React.FC = () => {
+export const Products = () => {
     const [products, setProducts] = useState<TProduct[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);

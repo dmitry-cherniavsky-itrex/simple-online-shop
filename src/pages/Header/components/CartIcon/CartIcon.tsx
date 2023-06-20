@@ -2,14 +2,13 @@ import React from "react";
 
 import {CartIconContainer} from "./CartIcon.styles";
 import {useCart} from "../../../../common/contexts/CartProvider/CartContext";
-import {CartActionType} from "../../../../common/contexts/CartProvider/cartActions";
 
-export const CartIcon : React.FC = () => {
-    const [state, dispatch] = useCart();
+type TCardIconProps = {
+    toggleCart: () => void;
+}
 
-    const toggleCart = () => {
-        dispatch({type: CartActionType.TOGGLE_CART});
-    };
+export const CartIcon = ({ toggleCart }: TCardIconProps) => {
+    const [state] = useCart();
 
     return (
         <CartIconContainer onClick={toggleCart}>

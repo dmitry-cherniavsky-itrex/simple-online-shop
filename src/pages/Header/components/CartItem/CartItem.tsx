@@ -7,7 +7,7 @@ interface ICartItemProps {
     item : ICartItem
 }
 
-export const CartItem : React.FC<ICartItemProps> = ({item}) => {
+export const CartItem = ({item} : ICartItemProps) => {
     const {title, thumbnail, price, quantity} = item;
 
     return (

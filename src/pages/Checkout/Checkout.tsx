@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import {Link} from "react-router-dom";
 
 import {useCart} from "../../common/contexts/CartProvider/CartContext";
@@ -7,10 +7,10 @@ import {CartActionType} from "../../common/contexts/CartProvider/cartActions";
 
 import {CheckoutContainer, EmptyMessage, OrderItem, OrderItemsList} from "./Checkout.styles";
 import {FormGroup} from "../../common/components/form/FormGroup/FormGroup.style";
-import Input from "../../common/components/form/Input/Input";
+import {Input} from "../../common/components/form/Input/Input";
 import {Button} from "../../common/components/form/Buttons/Buttons.styles";
 
-export const Checkout : React.FC = () => {
+export const Checkout = () => {
     const [state, dispatch] = useCart();
     const [error, setError] = useState('');
 

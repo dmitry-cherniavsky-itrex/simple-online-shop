@@ -1,27 +1,31 @@
-import React from "react";
-import {Outlet} from "react-router-dom";
+import React, {useCallback, useState} from "react";
 import {Link} from "react-router-dom";
-
-import {useCart} from "../../common/contexts/CartProvider/CartContext";
 
 import {CartDropdown} from "./components/CartDropdown/CartDropdown";
 import {HeaderContainer} from "./Header.styles";
-import {PageWrapper} from "./Header.styles";
 import {Logo} from "./Header.styles";
 import {CartIcon} from "./components/CartIcon/CartIcon";
-export const Header: React.FC = () => {
-    const [state] = useCart();
+
+export const Header = () => {
+    const [cartOpen, setCartOpen] = useState(false);
+
+    const toggleCart = () => {
+        setCartOpen((prev) => !prev);
+    }
+
+    const closeCart = useCallback(() => {
+        setCartOpen(false)
+    }, []);
 
     return (
-        <PageWrapper>
-            <HeaderContainer>
-                <Link to="/">
-                    <Logo>Simple online shop</Logo>
-                </Link>
-                <CartIcon />
-                {state.isCartShown && <CartDropdown />}
-            </HeaderContainer>
-            <Outlet />
-        </PageWrapper>
+        <HeaderContainer>
+            <Link to="/">
+                <Logo>Simple online shop</Logo>
+            </Link>
+
+            <CartIcon toggleCart={toggleCart} />
+
+            {cartOpen && <CartDropdown onClose={closeCart} />}
+        </HeaderContainer>
     );
 };

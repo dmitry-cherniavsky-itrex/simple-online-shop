@@ -1,4 +1,3 @@
-import React from "react";
 import {Button} from "../../../../common/components/form/Buttons/Buttons.styles";
 
 import type {TProduct} from "../../../../types/product";
@@ -11,7 +10,7 @@ interface IProductCardProps {
     product: TProduct
 }
 
-export const ProductCard: React.FC<IProductCardProps> = ({product}) => {
+export const ProductCard = ({product} : IProductCardProps) => {
     const {title, price, description, thumbnail} = product;
     const [, dispatch] = useCart();
 
@@ -21,7 +20,7 @@ export const ProductCard: React.FC<IProductCardProps> = ({product}) => {
 
     return (
         <ProductCardContainer>
-            <img src={thumbnail} alt={`${title}`}/>
+            <img src={thumbnail} alt={title}/>
             <ProductInfo>
                 <ProductNamePrice>
                     <span>{title}</span>

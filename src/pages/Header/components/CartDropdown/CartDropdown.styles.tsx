@@ -6,7 +6,7 @@ export const CartDropdownContainer = styled.div`
     height: 350px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 20px 0;
     border: 1px solid #999;
     background-color: white;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
@@ -14,8 +14,8 @@ export const CartDropdownContainer = styled.div`
     top: 70px;
     right: 20px;
 
-    button {
-      margin-top: auto;
+    & > button {
+      margin: auto 20px 0;
     }
 `;
 
@@ -30,4 +30,5 @@ export const CartItemsContainer = styled.div`
     flex-direction: column;
     row-gap: 15px;
     overflow-y: auto;
+    padding: 0 20px;
 `;

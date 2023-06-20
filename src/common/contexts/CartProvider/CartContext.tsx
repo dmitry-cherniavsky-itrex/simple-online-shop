@@ -1,4 +1,4 @@
-import React, {useReducer, createContext, useContext} from 'react';
+import {useReducer, createContext, useContext} from 'react';
 
 import {ICartState} from './cartState';
 import {TCartAction, CartActionType} from './cartActions';
@@ -6,7 +6,6 @@ import {TProviderProps} from "../types";
 
 const initialCartState: ICartState = {
     items: [],
-    isCartShown: false,
     counter: 0,
     totalCost: 0
 };
@@ -17,7 +16,7 @@ function cartReducer(state: ICartState, action: TCartAction): ICartState {
             // If item already exists in cart, increase quantity
             const newCounter = state.counter + 1;
             const newTotalCost = state.totalCost + action.item.price;
-            const existingItemIndex = state.items.findIndex(item => item.id === action.item.id);
+            const existingItemIndex = state.items.findIndex((item) => item.id === action.item.id);
 
             if (existingItemIndex !== -1) {
                 const newItems = [...state.items];
@@ -47,7 +46,7 @@ function cartReducer(state: ICartState, action: TCartAction): ICartState {
 
         case CartActionType.REMOVE:
             // Filter out the item with the given id
-            const newItems = state.items.filter(item => item.id !== action.item.id);
+            const newItems = state.items.filter((item) => item.id !== action.item.id);
             const updatedTotalCost = state.totalCost - (action.item.price * action.item.quantity);
 
             return {
@@ -57,9 +56,6 @@ function cartReducer(state: ICartState, action: TCartAction): ICartState {
                 totalCost: updatedTotalCost
             };
 
-        case CartActionType.TOGGLE_CART:
-            return {...state, isCartShown: !state.isCartShown};
-
         default:
             return state;
     }
@@ -67,7 +63,7 @@ function cartReducer(state: ICartState, action: TCartAction): ICartState {
 
 export const CartContext = createContext<[ICartState, React.Dispatch<TCartAction>] | undefined>(undefined);
 
-export const CartProvider : React.FC <TProviderProps> = ({children}) => {
+export const CartProvider = ({children} : TProviderProps) => {
     const [state, dispatch] = useReducer(cartReducer, initialCartState);
     return <CartContext.Provider value={[state, dispatch]}>{children}</CartContext.Provider>;
 }

@@ -6,11 +6,18 @@ export const CartItemContainer = styled.div`
   column-gap: 16px;
   height: 80px;
 
-  img {
+  & > img {
     height: 60px;
     width: 25%;
     object-position: left top;
     object-fit: cover;
+  }
+  
+  & > button {
+    appearance: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
   }
 `;
 

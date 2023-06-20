@@ -26,23 +26,23 @@ export const ProductCardContainer = styled.div`
     object-position: left top;
     object-fit: cover;
   }
-  
-  .product-info {
-    padding: 8px 10px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .product-name-price {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  .description {
-    flex: 1;
-    overflow-y: auto;
-  }
+`;
+
+export const ProductInfo = styled.div`
+  padding: 8px 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ProductNamePrice = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: bold;
+`;
+
+export const ProductDescription = styled.div`
+  flex: 1;
+  overflow-y: auto;
 `;

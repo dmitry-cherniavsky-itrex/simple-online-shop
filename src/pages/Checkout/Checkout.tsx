@@ -1,8 +1,11 @@
 import React from "react";
 
+import {CheckoutContainer} from "./Checkout.styles";
+
 export const Checkout : React.FC = () => {
     return (
-      //TODO: checkout page
-      <h1>Checkout page</h1>
+        <CheckoutContainer>
+            <h2>Checkout</h2>
+        </CheckoutContainer>
     );
 };

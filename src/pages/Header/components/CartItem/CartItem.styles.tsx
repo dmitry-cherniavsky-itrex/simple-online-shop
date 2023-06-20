@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const CartItemContainer = styled.div`
   width: 100%;
   display: flex;
+  column-gap: 16px;
   height: 80px;
-  margin-bottom: 15px;
 
   img {
     height: 60px;
@@ -15,10 +15,9 @@ export const CartItemContainer = styled.div`
 `;
 
 export const ItemDetails = styled.div`
-  width: 70%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 0 20px;
 `;

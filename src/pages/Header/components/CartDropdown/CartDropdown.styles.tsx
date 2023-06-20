@@ -13,7 +13,6 @@ export const CartDropdownContainer = styled.div`
     border-radius: 10px;
     top: 70px;
     right: 20px;
-    z-index: 5;
 
     button {
       margin-top: auto;
@@ -29,5 +28,6 @@ export const CartItemsContainer = styled.div`
     height: 260px;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    row-gap: 15px;
+    overflow-y: auto;
 `;

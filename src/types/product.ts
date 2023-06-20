@@ -1,5 +1,5 @@
 export type TProduct = {
-    id: string;
+    id: number;
     title: string;
     description: string;
     thumbnail: string;
